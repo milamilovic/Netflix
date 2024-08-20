@@ -1,0 +1,61 @@
+<div class="background">
+  <div class="container">
+    <label id="title">Sign Up</label>
+    <div class="whole-div">
+      <div class="half">
+        <div class="inner-container">
+          <div class="div-input">
+            <label for="name">*Name:</label>
+            <div class="field">
+              <input type="text" id="name" [(ngModel)]="name">
+            </div>
+          </div>
+          <div class="div-input">
+            <label for="name">*Surname:</label>
+            <div class="field">
+              <input type="text" id="surname" [(ngModel)]="surname">
+            </div>
+          </div>
+          <div class="div-input">
+            <label for="name">*Email:</label>
+            <div class="field">
+              <input type="email" id="email" [(ngModel)]="email">
+            </div>
+          </div>
+          <div class="div-input">
+            <label>*Birthday:</label>
+            <div class="field">
+              <input type="date" id="birthday" [(ngModel)]="birthday">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="half">
+        <div class="div-input">
+          <label for="username">*Username:</label>
+          <div class="field">
+            <input type="text" id="username" [(ngModel)]="username">
+          </div>
+        </div>
+        <div class="div-input">
+          <label for="password">*Password:</label>
+          <div class="field">
+            <input type="password" id="password" [(ngModel)]="password">
+          </div>
+        </div>
+        <div class="div-input">
+          <label for="password">*Confirm password:</label>
+          <div class="field">
+            <input type="password" id="password2" [(ngModel)]="password2">
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="button" (click)="onRegister()">Sign Up</button>
+    <div class="login-section">
+      <label>Already on Netflix? </label>
+      <button [routerLink]="['/login']" id="login-button">Sign in now</button>
+    </div>
+  </div>
+</div>
+

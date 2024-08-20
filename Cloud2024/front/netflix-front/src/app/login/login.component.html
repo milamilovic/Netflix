@@ -1,0 +1,24 @@
+<div class="background">
+  <div class="container">
+    <label id="title">Sign In</label>
+    <div class="inner-container">
+      <div class="div-input">
+        <label for="username">Username:</label>
+        <div class="field">
+          <input type="text" id="username" [(ngModel)]="username">
+        </div>
+      </div>
+      <div class="div-input">
+        <label for="password">Password:</label>
+        <div class="field">
+          <input type="password" id="password" [(ngModel)]="password">
+        </div>
+      </div>
+      <button class="button" (click)="onLogin()">Sign In</button>
+    </div>
+    <div class="register-section">
+      <label id="register-text">New to Netflix? </label>
+      <button [routerLink]="['/register']" id="register-button">Sign up now</button>
+    </div>
+  </div>
+</div>

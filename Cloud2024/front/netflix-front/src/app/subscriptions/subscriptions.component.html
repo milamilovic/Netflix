@@ -1,0 +1,40 @@
+<div class="menu">
+  <button class="menu-button" [routerLink]="['/home']">Home</button>
+  <button class="menu-button" [routerLink]="['/search']">Search</button>
+  <button *ngIf="!isAdmin" class="menu-button" [routerLink]="['/subscriptions']">
+    Subscriptions
+  </button>
+  <button *ngIf="isAdmin" class="menu-button" [routerLink]="['/upload-movie']">
+    Upload movie
+  </button>
+  <button *ngIf="isAdmin" class="menu-button" [routerLink]="['/upload-show']">
+    Upload tv show
+  </button>
+</div>
+<div class="parent">
+  <div class="subscriptions-container">
+    <h1 class="title">Your Subscriptions</h1>
+    <div *ngIf="subscriptions" class="subscriptions-details">
+      <p class="subscriptions-info">
+        <strong>Actors:</strong> {{ subscriptions.subscribedActors.join(", ") }}
+      </p>
+      <p class="subscriptions-info">
+        <strong>Genres:</strong> {{ subscriptions.subscribedGenres.join(", ") }}
+      </p>
+      <p class="subscriptions-info">
+        <strong>Directors:</strong>
+        {{ subscriptions.subscribedDirectors.join(", ") }}
+      </p>
+    </div>
+    <div *ngIf="!subscriptions" class="subscriptions-details">
+      <p class="subscriptions-info">
+        <strong>You are not subscribed to anything at the moment</strong>
+      </p>
+    </div>
+    <div class="button-container">
+      <button class="submit-button" (click)="updateSubscriptions()">
+        Update Subscriptions
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,118 @@
+<div class="menu">
+  <button class="menu-button" [routerLink]="['/home']">Home</button>
+  <button class="menu-button" [routerLink]="['/search']">Search</button>
+  <button
+    *ngIf="!isAdmin"
+    class="menu-button"
+    [routerLink]="['/subscriptions']"
+  >
+    Subscriptions
+  </button>
+  <button *ngIf="isAdmin" class="menu-button" [routerLink]="['/upload-movie']">
+    Upload movie
+  </button>
+  <button *ngIf="isAdmin" class="menu-button" [routerLink]="['/upload-show']">
+    Upload tv show
+  </button>
+</div>
+<div *ngIf="tvShow && episodes.length > 0" class="tvshow-container">
+  <div class="parent" *ngIf="!videoSrc">
+    <!--<img class="image1" src="..\..\assets\images\playButton.png" alt="PlayButton"/>-->
+    <img class="image2" [src]="thumbnailImageSrc" alt="Thumbnail" />
+  </div>
+  <div class="parent" *ngIf="videoSrc">
+    <video #videoPlayer controls width="600px" height="400px" *ngIf="videoSrc">
+      <source [src]="videoSrc" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <h1 class="tvshow-title">{{ tvShow.title }}</h1>
+  <div class="tvshow-details">
+    <p class="tvshow-description">
+      <strong>Description:</strong> {{ tvShow.description }}
+    </p>
+    <p class="tvshow-info">
+      <strong>Actors:</strong> {{ tvShow.actors.join(", ") }}
+    </p>
+    <p class="tvshow-info">
+      <strong>Genres:</strong> {{ tvShow.genres.join(", ") }}
+    </p>
+    <p class="tvshow-info">
+      <strong>Directors:</strong> {{ tvShow.directors.join(", ") }}
+    </p>
+  </div>
+  <h1 class="tvshow-title">Episodes</h1>
+  <div class="episode-details" *ngIf="episodes.length > 0">
+    <div class="episode-card" *ngFor="let episode of episodes">
+      <div class="card-wrapper">
+        <div class="inner-wrapper" (click)="playEpisode(episode)">
+          <img
+            [src]="'data:image/png;base64,' + episode.episodeThumbnail"
+            alt="Episode Thumbnail"
+          />
+          <div class="episode-info">
+            <h3>{{ episode.episodeTitle }}</h3>
+            <p>
+              Season {{ episode.seasonNumber }}, Episode
+              {{ episode.episodeNumber }}
+            </p>
+            <p>{{ episode.episodeDescription }}</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button (click)="downloadEpisode(episode)">Download</button>
+          <!-- Add download button here -->
+        </div>
+        <div class="buttons-container">
+          <div class="rating" *ngIf="!isAdmin">
+            <button
+              class="emoji-button"
+              [ngClass]="{ active: rating === 'love' }"
+              (click)="rateMovie('love', episode)"
+            >
+              ❤️
+            </button>
+            <button
+              class="emoji-button"
+              [ngClass]="{ active: rating === 'like' }"
+              (click)="rateMovie('like', episode)"
+            >
+              👍
+            </button>
+            <button
+              class="emoji-button"
+              [ngClass]="{ active: rating === 'dislike' }"
+              (click)="rateMovie('dislike', episode)"
+            >
+              👎
+            </button>
+          </div>
+          <button
+            *ngIf="isAdmin"
+            class="update-button"
+            [routerLink]="['/update-show', episode?.id]"
+          >
+            Update Show
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="quality-selection">
+  <label *ngFor="let quality of qualities">
+    <input
+      type="radio"
+      name="quality"
+      [value]="quality"
+      [(ngModel)]="selectedQuality"
+      (change)="onQualityChange(quality)"
+    />
+    {{ quality }}
+  </label>
+</div>
+
+<div *ngIf="!tvShow || episodes.length === 0" class="tvshow-not-found">
+  <img src="..\..\assets\images\not-found-woman.jpg" alt="TV Show Not Found" />
+  <p>Sorry, we can not find the tv show you're looking for!</p>
+</div>

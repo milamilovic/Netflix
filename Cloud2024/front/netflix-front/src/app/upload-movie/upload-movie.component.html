@@ -1,0 +1,79 @@
+<div class="menu">
+  <button class="menu-button" [routerLink]="['/home']">Home</button>
+  <button class="menu-button" [routerLink]="['/search']">Search</button>
+  <button *ngIf="!isAdmin" class="menu-button" [routerLink]="['/subscriptions']">
+    Subscriptions
+  </button>
+  <button *ngIf="isAdmin" class="menu-button" [routerLink]="['/upload-movie']">
+    Upload movie
+  </button>
+  <button *ngIf="isAdmin" class="menu-button" [routerLink]="['/upload-show']">
+    Upload tv show
+  </button>
+</div>
+<div class="upload-container">
+  <h1>Upload Movie</h1>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" id="title" [(ngModel)]="title" name="title" required />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        [(ngModel)]="description"
+        name="description"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="actors">Actors</label>
+      <input
+        type="text"
+        id="actors"
+        [(ngModel)]="actors"
+        name="actors"
+        placeholder="Comma separated"
+      />
+    </div>
+    <div class="form-group">
+      <label for="directors">Directors</label>
+      <input
+        type="text"
+        id="directors"
+        [(ngModel)]="directors"
+        name="directors"
+        placeholder="Comma separated"
+      />
+    </div>
+    <div class="form-group">
+      <label for="genres">Genres</label>
+      <input
+        type="text"
+        id="genres"
+        [(ngModel)]="genres"
+        name="genres"
+        placeholder="Comma separated"
+      />
+    </div>
+    <div class="form-group">
+      <label for="thumbnailImage">Upload Thumbnail Image</label>
+      <input
+        type="file"
+        id="thumbnailImage"
+        (change)="onImageChange($event)"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="fileContent">Upload Video</label>
+      <input
+        type="file"
+        id="fileContent"
+        (change)="onFileChange($event)"
+        required
+      />
+    </div>
+    <button class="submit-button" type="submit">Upload</button>
+  </form>
+</div>

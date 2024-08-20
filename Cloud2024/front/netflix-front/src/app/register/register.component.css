@@ -1,0 +1,108 @@
+.background {
+  margin: 0;
+  padding: 0;
+  background-color: #141414;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  margin: 0;
+  padding: 50px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  border: white solid 1px;
+  border-radius: 1%;
+}
+
+#title {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.whole-div {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.half {
+  width: 47%;
+}
+
+.inner-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-input{
+  width: 100%;
+  margin-bottom: 2%;
+  color: white;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field input{
+  margin: 10px 0;
+  width: 95%;
+  height: 35px;
+  background-color: #ffffff90;
+  color: white;
+  border-radius: 5px;
+  border-color: #ffffff90;
+}
+
+.button {
+  margin-top: 20px;
+  width: 100%;
+  height: 35px;
+  padding: 0;
+  border-radius: 5px;
+  border-color: white;
+  background-color: white;
+  color: black;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover{
+  background-color: black;
+  color: white ;
+}
+
+.login-section {
+  display: flex;
+  font-size: 15px;
+  color: #ffffff90;
+  margin-top: 25px;
+}
+
+#login-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 15px;
+  transition: none 0.3s ease;
+}
+
+#login-button:hover {
+  text-decoration: underline;
+}
+
+

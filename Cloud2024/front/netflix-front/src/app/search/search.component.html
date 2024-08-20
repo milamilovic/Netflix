@@ -1,0 +1,71 @@
+<div class="menu">
+  <button class="menu-button" [routerLink]="['/home']">Home</button>
+  <button class="menu-button" [routerLink]="['/search']">Search</button>
+  <button *ngIf="!isAdmin" class="menu-button" [routerLink]="['/subscriptions']">
+    Subscriptions
+  </button>
+  <button *ngIf="isAdmin" class="menu-button" [routerLink]="['/upload-movie']">
+    Upload movie
+  </button>
+  <button *ngIf="isAdmin" class="menu-button" [routerLink]="['/upload-show']">
+    Upload tv show
+  </button>
+</div>
+<form (ngSubmit)="onSubmit()">
+  <div class="search-container">
+    <div class="search-box">
+      <label for="title">Title:</label>
+      <input type="text" id="title" [(ngModel)]="title" name="title" />
+    </div>
+    <div class="search-box">
+      <label for="actors">Actors:</label>
+      <input
+        type="text"
+        id="actors"
+        [(ngModel)]="actors"
+        name="actors"
+        placeholder="Comma separated"
+      />
+    </div>
+    <div class="search-box">
+      <label for="directors">Directors:</label>
+      <input
+        type="text"
+        id="directors"
+        [(ngModel)]="directors"
+        name="directors"
+        placeholder="Comma separated"
+      />
+    </div>
+    <div class="search-box">
+      <label for="genres">Genres:</label>
+      <input
+        type="text"
+        id="genres"
+        [(ngModel)]="genres"
+        name="genres"
+        placeholder="Comma separated"
+      />
+    </div>
+    <button class="submit-button" type="submit">Search</button>
+  </div>
+</form>
+<div class="feed-container">
+  <div *ngFor="let movie of movies" class="movie-item">
+    <img
+      [src]="movie.thumbnailImage"
+      alt="{{ movie.title }}"
+      *ngIf="movie.isMovie"
+      [routerLink]="['/movie', movie.id]"
+      class="thumbnail"
+    />
+    <img
+      [src]="movie.thumbnailImage"
+      alt="{{ movie.title }}"
+      *ngIf="!movie.isMovie"
+      [routerLink]="['/show', movie.title]"
+      class="thumbnail"
+    />
+    <div class="movie-title">{{ movie.title }}</div>
+  </div>
+</div>

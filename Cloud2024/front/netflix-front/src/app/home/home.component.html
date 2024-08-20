@@ -1,0 +1,33 @@
+<div class="menu">
+  <button class="menu-button" [routerLink]="['/home']">Home</button>
+  <button class="menu-button" [routerLink]="['/search']">Search</button>
+  <button *ngIf="!isAdmin" class="menu-button" [routerLink]="['/subscriptions']">
+    Subscriptions
+  </button>
+  <button *ngIf="isAdmin" class="menu-button" [routerLink]="['/upload-movie']">
+    Upload movie
+  </button>
+  <button *ngIf="isAdmin" class="menu-button" [routerLink]="['/upload-show']">
+    Upload tv show
+  </button>
+</div>
+<div class="feed-container">
+  <div *ngFor="let movie of movies" class="movie-item">
+    <img
+      [src]="movie.thumbnailImage"
+      alt="{{ movie.title }}"
+      *ngIf="movie.isMovie"
+      [routerLink]="['/movie', movie.id]"
+      class="thumbnail"
+    />
+    <img
+      [src]="movie.thumbnailImage"
+      alt="{{ movie.title }}"
+      *ngIf="!movie.isMovie"
+      [routerLink]="['/show', movie.title]"
+      class="thumbnail"
+    />
+    <div class="movie-title">{{ movie.title }}</div>
+  </div>
+  <button class="menu-button" (click)="logout()"  [routerLink]="['/login']">Log out</button>
+</div>
